@@ -1,5 +1,5 @@
-aiofiles
 aiohttp>=3.13.5
+aiofiles
 beautifulsoup4
 deep-translator
 cachetools
@@ -32,3 +32,4 @@ pydub
 pandas
 python-dotenv
 PyGithub
+
