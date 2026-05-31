@@ -90,3 +90,7 @@ python -m AxiomX
 ```
 
 For long-running VPS hosting, use `systemd`, `tmux`, or `pm2` to keep the process alive.
+
+</p>
+
+- <b> _sᴩᴇᴄɪᴀʟ ᴛʜᴀɴᴋs ᴛᴏ [ᴛᴇᴀᴍ ᴀʟᴏɴᴇ](https://github.com/TeamAloneOp) ғᴏʀ [ᴀʟᴏɴᴇ ʀᴏʙᴏᴛ](https://github.com/TeamAloneOp/EikoRobot)_ </b>
