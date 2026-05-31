@@ -54,6 +54,7 @@ Minimum required values:
 2. Add buildpacks:
    - `heroku/python`
    - `heroku-community/apt` for native packages from `Aptfile` (`ffmpeg`, OpenCV runtime libs, etc.).
+   - `heroku-community/apt` if native packages such as `ffmpeg` are needed.
 3. Set config vars from `sample.env` in **Settings → Config Vars**.
 4. Deploy from GitHub or with the Heroku CLI:
 
