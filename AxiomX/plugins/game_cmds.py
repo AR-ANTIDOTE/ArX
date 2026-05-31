@@ -123,7 +123,7 @@ async def __gameStatus(update, context):
       cash = await get_cash(user.id)
       text = \
 f"""
-<a href='https://files.catbox.moe/kjdsse.jpg'>ℹ️</a> <b>{user.mention_html()}'s Game Status </b>:
+<a href='https://files.catbox.moe/d2l5nj.png'>ℹ️</a> <b>{user.mention_html()}'s Game Status </b>:
 
 🌀 <b>Name</b>: <code>{html.escape(user.full_name)}</code>
 🎚️ <b>Level</b>: <code>{level}</code>
