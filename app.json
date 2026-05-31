@@ -1,19 +1,97 @@
 {
-  "name": "Axiom Manager",
-  "description": "Python Telegram assistant bot with aiohttp web support.",
+  "name": "𝐀‌xɪσᴍ 𝐌‌ᴧηᴧɢєꝛ",
+  "description": "Telegram Group Management and Music Bot",
   "repository": "https://github.com/maanavbaby/AxiomX",
-  "buildpacks": [
-    { "url": "heroku-community/apt" },
-    { "url": "heroku/python" }
+  "logo": "https://litter.catbox.moe/sfi0h9.jpg",
+  "keywords": [
+    "telegram",
+    "bot",
+    "management",
+    "music",
+    "pyrogram",
+    "ptb"
   ],
   "env": {
-    "TOKEN": { "description": "Telegram bot token from BotFather", "required": true },
-    "API_ID": { "description": "Telegram API ID", "required": true },
-    "API_HASH": { "description": "Telegram API hash", "required": true },
-    "DB_URL": { "description": "MongoDB connection string", "required": true },
-    "DB_URL2": { "description": "Second MongoDB connection string; defaults to DB_URL in code", "required": false },
-    "IS_WEB_SUP": { "description": "Enable web server support", "value": "True" },
-    "WEB_SERVER_BIND_ADDRESS": { "description": "Host bind address", "value": "0.0.0.0" }
+    "TOKEN": {
+      "description": "Your bot token from @BotFather",
+      "required": true,
+      "value": ""
+    },
+    "DB_URL": {
+      "description": "Your MongoDB URI for database",
+      "required": true,
+      "value": "mongodb+srv://bhulud30_db_user:bhulud30_db_user@cluster0.yzspcrl.mongodb.net/?appName=Cluster0"
+    },
+    "DB_URL2": {
+      "description": "Your second MongoDB URI for database (optional but recommended)",
+      "required": false,
+      "value": "mongodb+srv://bhulud30_db_user:bhulud30_db_user@cluster0.yzspcrl.mongodb.net/?appName=Cluster0"
+    },
+    "API_ID": {
+      "description": "Your Telegram API_ID from my.telegram.org",
+      "required": true,
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Your Telegram API_HASH from my.telegram.org",
+      "required": true,
+      "value": ""
+    },
+    "ALONE_OWNER_ID": {
+      "description": "Your Telegram User ID",
+      "required": true,
+      "value": ""
+    },
+    "LOG_GROUP_ID": {
+      "description": "Group ID for logs (should start with -100)",
+      "required": true,
+      "value": ""
+    },
+    "USER_STRING": {
+      "description": "Pyrogram String Session (Optional, for user client features)",
+      "required": false
+    },
+    "WEB_URL": {
+      "description": "Your Heroku app URL (Optional, for keep alive)",
+      "required": false
+    },
+    "SUPPORT_CHAT": {
+      "description": "Your support group username (without @)",
+      "required": false,
+      "value": "Axlomm"
+    },
+    "UPDATE_CHANNEL": {
+      "description": "Your update channel username (without @)",
+      "required": false,
+      "value": "Axiombots"
+    },
+    "OWNER_ID": {
+      "description": "Owner ID (same as ALONE_OWNER_ID)",
+      "required": false,
+      "value": ""
+    },
+    "SUDO_USERS": {
+      "description": "Sudo users ID separated by space",
+      "required": false,
+      "value": ""
+    },
+    "GIST_TOKEN": {
+      "description": "GitHub Gist Token (Optional)",
+      "required": false
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku-community/apt"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
   }
 }
-
