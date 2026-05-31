@@ -1,5 +1,5 @@
 {
-  "name": "AxiomX",
+  "name": "Axiom Manager",
   "description": "Python Telegram assistant bot with aiohttp web support.",
   "repository": "https://github.com/maanavbaby/AxiomX",
   "buildpacks": [
@@ -16,3 +16,4 @@
     "WEB_SERVER_BIND_ADDRESS": { "description": "Host bind address", "value": "0.0.0.0" }
   }
 }
+
