@@ -149,7 +149,7 @@ async def root_route_handler(request):
             <img src="https://files.catbox.moe/d2l5nj.png" alt="Axiom Manager">
             <h1>AxiomX Assistant Bot</h1>
             <p>Your all-in-one Telegram assistant powered by AI</p>
-            <a href="https://t.me/vcXmnvbot?start=help" class="cta-button">Start Using Bot</a>
+            <a href="https://t.me/AxiomManageBot?start=help" class="cta-button">Start Using Bot</a>
         </div>
 
         <div class="features">
