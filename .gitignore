@@ -24,3 +24,9 @@ Thumbs.db
 
 #ignore download files
 downloads
+.env
+.env.*
+!sample.env
+cookies/
+downloads/
+restart_data.txt

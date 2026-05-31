@@ -1,1 +1,1 @@
-web: python3 -m AxiomX
+web: python -m AxiomX
