@@ -40,7 +40,7 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "0"))
 
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/Axlomm")
 
-START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/kjdsse.jpg")
+START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/d2l5nj.png")
 
 
 SUPPORT_CHAT = getenv('SUPPORT_CHAT', 'Axlomm')
@@ -56,7 +56,7 @@ else:
     LOGS_CHANNEL = None
 
 LOGGER_ID = int(getenv('LOGGER_ID', '0'))
-BOT_USERNAME = getenv('BOT_USERNAME', '@vcXmncbot')
+BOT_USERNAME = getenv('BOT_USERNAME', '@axiommanagebot')
 BOT_NAME = getenv('BOT_NAME', 'Eiko')
 IS_WEB_SUP = getenv('IS_WEB_SUP', 'True').lower() == 'true'
 
@@ -98,17 +98,17 @@ BTN_ROWS = int(getenv('BTN_ROWS', '6'))
 
 
 # some media source
-PM_START_IMG = getenv('PM_START_IMG', "https://files.catbox.moe/kjdsse.jpg")
+PM_START_IMG = getenv('PM_START_IMG', "https://files.catbox.moe/d2l5nj.png")
 
-HELP_CMD_IMG = getenv('HELP_CMD_IMG', "https://files.catbox.moe/kjdsse.jpg")
-
-
-HELP_MODULE_IMG = getenv('HELP_MODULE_IMG', "https://files.catbox.moe/kjdsse.jpg")
-
-START_IMG = getenv('START_IMG', "https://files.catbox.moe/kjdsse.jpg")
+HELP_CMD_IMG = getenv('HELP_CMD_IMG', "https://files.catbox.moe/d2l5nj.png")
 
 
-FORCE_JOIN_IMG = getenv('FORCE_JOIN_IMG', "https://files.catbox.moe/kjdsse.jpg")
+HELP_MODULE_IMG = getenv('HELP_MODULE_IMG', "https://files.catbox.moe/d2l5nj.png")
+
+START_IMG = getenv('START_IMG', "https://files.catbox.moe/d2l5nj.png")
+
+
+FORCE_JOIN_IMG = getenv('FORCE_JOIN_IMG', "https://files.catbox.moe/d2l5nj.png")
 
 AF_START_STICKERS = [
   "CAACAgUAAxkBAAEBrV9nWukpft8gmtrZVMkbO4GKlZy0HQACWxUAAnHv2FZkjr7WjG3OjzYE",
