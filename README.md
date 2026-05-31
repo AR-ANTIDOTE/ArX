@@ -53,6 +53,7 @@ Minimum required values:
 1. Create a Heroku app.
 2. Add buildpacks:
    - `heroku/python`
+   - `heroku-community/apt` for native packages from `Aptfile` (`ffmpeg`, OpenCV runtime libs, etc.).
    - `heroku-community/apt` if native packages such as `ffmpeg` are needed.
 3. Set config vars from `sample.env` in **Settings → Config Vars**.
 4. Deploy from GitHub or with the Heroku CLI:
@@ -69,6 +70,10 @@ heroku ps:scale web=1
 ```
 
 Heroku reads `Procfile` and starts `python -m AxiomX`.
+
+## OpenCV / cv2 deploy note
+
+This app uses `cv2` in some plugins. On server platforms, use `opencv-python-headless` instead of desktop `opencv-python`; this avoids GUI/X11 runtime crashes like `ImportError: libxcb.so.1`. Railway and Heroku native package files also include `libxcb1` as an extra compatibility package.
 
 ## VPS deployment
 
