@@ -94,7 +94,7 @@ async def fakemailgen(client, message: Message):
     await loading.delete()
     await app.send_message(
         user_id,
-        text=f"**📬 Temp-Mail Created!**\n📧 **Email**: `{email}`\n🔑 **Password**: `{password}`\n📨 **Mail BOX**: `empty`\n\n♨️ Powered by: @vcXmnvbot",
+        text=f"**📬 Temp-Mail Created!**\n📧 **Email**: `{email}`\n🔑 **Password**: `{password}`\n📨 **Mail BOX**: `empty`\n\n♨️ Powered by: @AxiomManageBot",
         reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton(font("🔁 Refresh"), callback_data=f"tmail_refresh|{email}", style=ButtonStyle.PRIMARY),
             InlineKeyboardButton(font("❌ Close"), callback_data=f"tmail_delete|{email}", style=ButtonStyle.DANGER),
@@ -133,7 +133,7 @@ async def setmailgen(client, message: Message):
     await loading.delete()
     await app.send_message(
         user_id,
-        text=f"**📬 Temp-Mail Created!**\n📧 **Email**: `{email}`\n🔑 **Password**: `{password}`\n📨 **Mail BOX**: `empty`\n\n♨️ Powered by: @vcXmnvbot",
+        text=f"**📬 Temp-Mail Created!**\n📧 **Email**: `{email}`\n🔑 **Password**: `{password}`\n📨 **Mail BOX**: `empty`\n\n♨️ Powered by: @AxiomManageBot",
         reply_markup=InlineKeyboardMarkup([[
             InlineKeyboardButton(font("🔁 Refresh"), callback_data=f"tmail_refresh|{email}", style=ButtonStyle.PRIMARY),
             InlineKeyboardButton(font("❌ Close"), callback_data=f"tmail_delete|{email}", style=ButtonStyle.DANGER),
@@ -158,7 +158,7 @@ async def refresh_mailbox(_, query: CallbackQuery):
     
     if not messages:
         await query.message.edit_text(
-            f"**📬 Temp-Mail**\n📧 **Email**: `{email}`\n📨 **Mail BOX**: `empty`\n\n♨️ Powered by: @vcXmnvbot",
+            f"**📬 Temp-Mail**\n📧 **Email**: `{email}`\n📨 **Mail BOX**: `empty`\n\n♨️ Powered by: @AxiomManageBot",
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton(font("🔁 Refresh"), callback_data=f"tmail_refresh|{email}", style=ButtonStyle.PRIMARY),
                 InlineKeyboardButton(font("❌ Close"), callback_data=f"tmail_delete|{email}", style=ButtonStyle.DANGER),
@@ -184,7 +184,7 @@ async def refresh_mailbox(_, query: CallbackQuery):
     ])
     
     await query.message.edit_text(
-        f"**📬 Temp-Mail**\n📧 **Email**: `{email}`\n📨 **Mail BOX**: {len(messages)} message(s)\n\n♨️ Powered by: @vcXmnvbot",
+        f"**📬 Temp-Mail**\n📧 **Email**: `{email}`\n📨 **Mail BOX**: {len(messages)} message(s)\n\n♨️ Powered by: @AxiomManageBot",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
     await query.answer(font("✅ Refreshed!"))
