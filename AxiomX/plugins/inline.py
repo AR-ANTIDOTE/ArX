@@ -504,7 +504,7 @@ async def inline_handler(c: Client, q: InlineQuery):
                     id=shortuuid.uuid(),
                     title=f"🎥 {track['title']}",
                     description=f"👤 {track['artist']} | ⏱ {track['duration']}",
-                    thumb_url=track['thumbnail'] or "https://files.catbox.moe/kjdsse.jpg",
+                    thumb_url=track['thumbnail'] or "https://files.catbox.moe/q2nluk.png",
                     input_message_content=InputTextMessageContent(
                         f"🎥 **{track['title']}**\n👤 {track['artist']}\n\n⏳ Preparing..."
                     ),
