@@ -146,8 +146,8 @@ async def root_route_handler(request):
 <body>
     <div class="container">
         <div class="hero">
-            <img src="https://files.catbox.moe/d2l5nj.png" alt="Axiom Manager">
-            <h1>AxiomX Assistant Bot</h1>
+            <img src="https://files.catbox.moe/q2nluk.png" alt="Axiom Manager">
+            <h1>Axiom Manager Bot</h1>
             <p>Your all-in-one Telegram assistant powered by AI</p>
             <a href="https://t.me/AxiomManageBot?start=help" class="cta-button">Start Using Bot</a>
         </div>
@@ -157,6 +157,13 @@ async def root_route_handler(request):
                 <div class="feature-icon">🤖</div>
                 <h3>AI Tools</h3>
                 <p>Advanced AI-powered features for chat, image generation, and more</p>
+            </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">👤</div>
+                <h3>Developer</h3>
+                <p>Powered by OwnerAxiom [@CreativeAxiom]</p>
             </div>
 
             <div class="feature-card">
