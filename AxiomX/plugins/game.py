@@ -38,10 +38,10 @@ bowl_users = {}
 FLOOD_MAX = 10  # in minutes
 
 # Images
-TRY_LATER_IMG = "https://files.catbox.moe/q2nluk.png"
-GOOD_LUCK_IMG = "https://files.catbox.moe/q2nluk.png"
-BAD_LUCK_IMG = "https://files.catbox.moe/q2nluk.png"
-SERIOUS_IMG = "https://files.catbox.moe/q2nluk.png"
+TRY_LATER_IMG = "https://files.catbox.moe/d2l5nj.png"
+GOOD_LUCK_IMG = "https://files.catbox.moe/d2l5nj.png"
+BAD_LUCK_IMG = "https://files.catbox.moe/d2l5nj.png"
+SERIOUS_IMG = "https://files.catbox.moe/d2l5nj.png"
 
 # Remove user after delay
 async def remove_user_after_delay(user_id, data):
