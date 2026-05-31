@@ -1,0 +1,18 @@
+{
+  "name": "AxiomX",
+  "description": "Python Telegram assistant bot with aiohttp web support.",
+  "repository": "https://github.com/maanavbaby/AxiomX",
+  "buildpacks": [
+    { "url": "heroku-community/apt" },
+    { "url": "heroku/python" }
+  ],
+  "env": {
+    "TOKEN": { "description": "Telegram bot token from BotFather", "required": true },
+    "API_ID": { "description": "Telegram API ID", "required": true },
+    "API_HASH": { "description": "Telegram API hash", "required": true },
+    "DB_URL": { "description": "MongoDB connection string", "required": true },
+    "DB_URL2": { "description": "Second MongoDB connection string; defaults to DB_URL in code", "required": false },
+    "IS_WEB_SUP": { "description": "Enable web server support", "value": "True" },
+    "WEB_SERVER_BIND_ADDRESS": { "description": "Host bind address", "value": "0.0.0.0" }
+  }
+}
