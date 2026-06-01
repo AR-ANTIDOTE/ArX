@@ -346,7 +346,7 @@ async def _bst_group(chat, u, cmd):
     try:
         w = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         un = f"@{u.username}" if u.username else "No Username"
-        lt = f"⚡ **Bot Started in Group**\n\n**👥 Group:** {chat.title}\n**🆔 Chat ID:** `{chat.id}`\n**👤 Started By:** {u.mention}\n**🆔 User ID:** `{u.id}`\n**🔗 Username:** {un}\n**🔧 Command:** `/{cmd}`\n**📅 Date:** `{w}`"
+        lt = f"**❖ 𝐓‌ʜє 𝐀‌xɪσϻ 𝐌‌ᴧηᴧɢєꝛ 𝐁‌σᴛ Sᴛᴧꝛᴛєᴅ 𝐈‌η 𝐆‌ꝛσυᴘ 𝐍‌σᴡ**\n\n**✧ 𝐆‌ꝛσυᴘ:** {chat.title}\n**✧ 𝐂‌ʜᴧᴛ 𝐈‌𝐃‌:** `{chat.id}`\n**✧ 𝐒‌ᴛᴧꝛᴛєᴅ 𝐁‌ʏ:** {u.mention}\n**✧ 𝐔‌sєꝛ 𝐈‌𝐃‌:** `{u.id}`\n**✧ 𝐔‌sєꝛηᴧᴍє :** {un}\n**✧ 𝐂‌σᴍᴍᴧηᴅ:** `/{cmd}`\n**✧ 𝐃‌ᴧᴛє:** `{w}`"
         if LOGS_CHANNEL:
             asyncio.create_task(pbot.send_message(LOGS_CHANNEL, lt))
     except Exception as e:
