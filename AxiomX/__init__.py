@@ -49,7 +49,7 @@ async def send_restart(application: Application) -> None:
         await application.bot.edit_message_text(
             chat_id=chat_id,
             message_id=message_id,
-            text="✅ Axiom Bot Restarted Successfully! ✨"
+            text="𝐓‌ʜє 𝐀‌xɪσϻ 𝐌‌ᴧηᴧɢєꝛ 𝐁‌σᴛ 𝐑‌єsᴛᴧꝛᴛєᴅ Sυᴄᴄєssғυʟʟʏ 🚀"
         )
         os.remove("restart_data.txt")  
     except FileNotFoundError:
@@ -60,7 +60,7 @@ async def send_restart(application: Application) -> None:
         if LOGS_CHANNEL:
             await application.bot.send_message(
                 chat_id=LOGS_CHANNEL,
-                text=f"<b>Axiom robot just restarted! ♥️</b>\n\n<b>Time:</b> <code>{time.ctime()}</code>",
+                text=f"<b>𝐓‌ʜє 𝐀‌xɪσϻ 𝐌‌ᴧηᴧɢєꝛ 𝐁‌σᴛ 𝐣‌υsᴛ 𝐑‌єsᴛᴧꝛᴛєᴅ ⏱️</b>\n\n<b>𝐓‌ɪᴍє:</b> <code>{time.ctime()}</code>",
                 parse_mode=constants.ParseMode.HTML
             )
     except Exception as e:
@@ -174,10 +174,10 @@ async def initialize_database():
         try:
             await app.bot.send_message(
                 LOGS_CHANNEL,
-                f"<b>AxiomX Robot has successfully initialized! 🚀</b>\n\n"
-                f"<b>Modules:</b> <code>ALL</code>\n"
-                f"<b>Database:</b> <code>CONNECTED</code>\n"
-                f"<b>Time:</b> <code>{time.ctime()}</code>",
+                f"<blockquote><b>𝐓‌ʜє 𝐀‌xɪσϻ 𝐌‌ᴧηᴧɢєꝛ 𝐁‌σᴛ 𝐒‌ᴛᴧꝛᴛєᴅ 𝐒‌υᴄᴄєssғυʟʟʏ 🚀</b></blockquote>\n\n"
+                f"<blockquote><b>𝐌‌σᴅυʟєs:</b> <code>ALL</code>\n"
+                f"<b>𝐃‌ᴧᴛᴧʙᴧsє:</b> <code>CONNECTED</code>\n"
+                f"<b>𝐓‌ɪᴍє:</b> <code>{time.ctime()}</code></blockquote>",
                 parse_mode=constants.ParseMode.HTML
             )
         except Exception as e:
