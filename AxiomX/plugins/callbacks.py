@@ -315,12 +315,12 @@ async def back_to_start_callback(client, query):
     update_url = UPDATE_CHANNEL if UPDATE_CHANNEL.startswith("http") else f'https://t.me/{UPDATE_CHANNEL.lstrip("@")}'
     
     buttons = [
-        [ptypes.InlineKeyboardButton(font('➕ Add Me Else Your Group ➕'), url=f'https://t.me/{bot_username}?startgroup=true', style=ButtonStyle.SUCCESS)],
-        [ptypes.InlineKeyboardButton(font('🎧 Music'), url=f'https://t.me/vcXmnvbot?start=help', style=ButtonStyle.PRIMARY),
-         ptypes.InlineKeyboardButton(font('⚙ Help ⚙'), callback_data=f'help_{user_id}', style=ButtonStyle.DANGER)],
-         [ptypes.InlineKeyboardButton(font('Update 💬'), url=update_url, style=ButtonStyle.PRIMARY),
-         ptypes.InlineKeyboardButton(font('Support 💬'), url=support_url, style=ButtonStyle.PRIMARY)],
-        [ptypes.InlineKeyboardButton(font('𓊈💥🔥𝔻eͥѵeͣlͫ𐍉קeℝ🔥💥𓊉'), user_id=config.AXIOM_UID, style=ButtonStyle.SUCCESS)]
+        [ptypes.InlineKeyboardButton(font('＋ 𝐈‌ηᴛєɢꝛᴧᴛє 𝐈‌η 𝐘‌συꝛ 𝐂‌ʜᴧᴛ  ＋'), url=f'https://t.me/{bot_username}?startgroup=true', style=ButtonStyle.SUCCESS)],
+        [ptypes.InlineKeyboardButton(font('🎧 𝐌‌υsɪᴄ'), url=f'https://t.me/vcXmnvbot?start=help', style=ButtonStyle.PRIMARY),
+         ptypes.InlineKeyboardButton(font('⚙ 𝐇‌єʟᴘ ⚙'), callback_data=f'help_{user_id}', style=ButtonStyle.DANGER)],
+         [ptypes.InlineKeyboardButton(font('𝐔‌ᴘᴅᴧᴛєs ⎘'), url=update_url, style=ButtonStyle.PRIMARY),
+         ptypes.InlineKeyboardButton(font('𝐒‌υᴘᴘσꝛᴛ ☏︎'), url=support_url, style=ButtonStyle.PRIMARY)],
+        [ptypes.InlineKeyboardButton(font('σᴡηєꝛ ✧ ᴀxɪσϻ'), user_id=config.AXIOM_UID, style=ButtonStyle.SUCCESS)]
     ]
     caption = (
         f"<blockquote><b>**⍣ 𝐇‌єʏᴧ {mention}\n"
