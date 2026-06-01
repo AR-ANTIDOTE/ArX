@@ -332,11 +332,11 @@ async def _bst(uid, u, cmd):
         w = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         un = f"@{u.username}" if u.username else "No Username"
         if us == 'new':
-            lt = f"⚡ **New User Started Bot**\n\n**👤 User:** {u.mention}\n**🆔 ID:** `{uid}`\n**🔗 Username:** {un}\n**📍 Source:** Direct DM\n**🔧 Command:** `/{cmd}`\n**📅 Date:** `{w}`"
+            lt = f"**❖ 𝐍‌єᴡ 𝐔‌sєꝛ Sᴛᴧꝛᴛєᴅ 𝐓‌ʜє 𝐀‌xɪσϻ 𝐌‌ᴧηᴧɢєꝛ 𝐁‌σᴛ **\n\n**✧ 𝐔‌sєꝛ:** {u.mention}\n**✧ 𝐈‌𝐃‌:** `{uid}`\n**✧ 𝐔‌sєꝛηᴧᴍє:** {un}\n**✧ Sσυꝛᴄє:** 𝐃‌ɪꝛєᴄᴛ 𝐃‌𝐌‌\n**✧ 𝐂‌σᴍᴍᴧηᴅ:** `/{cmd}`\n**✧ 𝐃‌ᴧᴛє:** `{w}`"
         elif us == 'group_inactive':
-            lt = f"⚡ **New Active User**\n\n**👤 User:** {u.mention}\n**🆔 ID:** `{uid}`\n**🔗 Username:** {un}\n**📍 Source:** Group → DM\n**🔧 Command:** `/{cmd}`\n**📅 Date:** `{w}`"
+            lt = f"**❖ 𝐍‌єᴡ 𝐀‌ᴄᴛɪᴠє 𝐔‌sєꝛ Sᴛᴧꝛᴛєᴅ 𝐓‌ʜє 𝐀‌xɪσϻ 𝐌‌ᴧηᴧɢєꝛ 𝐁‌σᴛ**\n\n**✧ 𝐔‌sєꝛ:** {u.mention}\n**✧ 𝐈‌𝐃‌:** `{uid}`\n**✧ 𝐔‌sєꝛηᴧᴍє:** {un}\n**✧ Sσυꝛᴄє:** 𝐆‌ꝛσυᴘ → 𝐃‌𝐌‌\n**✧ 𝐂‌σᴍᴍᴧηᴅ:** `/{cmd}`\n**✧ 𝐃‌ᴧᴛє:** `{w}`"
         else:
-            lt = f"⚡ **User Started Bot**\n\n**👤 User:** {u.mention}\n**🆔 ID:** `{uid}`\n**🔗 Username:** {un}\n**📍 Source:** Returning User\n**🔧 Command:** `/{cmd}`\n**📅 Date:** `{w}`"
+            lt = f"**❖ 𝐔‌sєꝛ Sᴛᴧꝛᴛєᴅ 𝐓‌ʜє 𝐀‌xɪσϻ 𝐌‌ᴧηᴧɢєꝛ 𝐁‌σᴛ**\n\n**✧ 𝐔‌sєꝛ:** {u.mention}\n**✧ 𝐈‌𝐃‌:** `{uid}`\n**✧ 𝐔‌sєꝛηᴧᴍє:** {un}\n**✧ Sσυꝛᴄє:** 𝐑‌єᴛυꝛηɪηɢ 𝐔‌sєꝛ\n**✧ 𝐂‌σᴍᴍᴧηᴅ:** `/{cmd}`\n**✧ 𝐃‌ᴧᴛє:** `{w}`"
         if LOGS_CHANNEL:
             asyncio.create_task(pbot.send_message(LOGS_CHANNEL, lt))
     except Exception as e:
@@ -422,7 +422,7 @@ async def _handle_start_private(message: Message):
         bm = f'<a href="tg://user?id={bi.id}">{html.escape(bi.first_name or BOT_UN)}</a>' if bi else "I"
         um = f'<a href="tg://user?id={u.id}">{html.escape(u.first_name or "there")}</a>'
         b = _gsb(uid)
-        tx = f"<blockquote><b>⍣ 𝖧𝖾𝗒𝖺 {um} {bm} 𝖨'𝗆 𝖠𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾 𝖠𝖨 𝖨𝗇𝗍𝖾𝗀𝗋𝖺𝗍𝖾𝖽 𝖱𝗈𝖻𝗈𝗍, 𝖨'𝗅𝗅 𝖬𝖺𝗇𝖺𝗀𝖾 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 𝖤𝖺𝗌𝗂𝗅𝗒.</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>➛ 70+ 𝖬𝗎𝗅𝗍𝗂𝗉𝗅𝖾 𝖥𝖾𝖺𝗍𝗎𝗋𝖾𝗌 𝖶𝗂𝗍𝗁 𝖠𝗂\n➛ E𝖺𝗌𝗒 𝖳𝗈 𝖴𝗌𝖾, 𝖠𝗅𝗅 𝖨𝗇 𝖮𝗇𝖾 𝖡𝗈𝗍\n➛ 𝖲𝖺𝖿𝖾𝗌𝗍 𝖦𝗋𝗈𝗎𝗉 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖡𝗈𝗍</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>⍣ 𝖧𝗂𝗍 𝖳𝗁𝖾 /help 𝖡𝗎𝗍𝗍𝗈𝗇 𝖳𝗈 𝖪𝗇𝗈𝗐 𝖬𝗒 𝖠𝖻𝗂𝗅𝗂𝗍𝗂𝖾𝗌</b></blockquote>"
+        tx = f"<blockquote><b>⍣ 𝐇‌єʏᴧ {um}\n✧ 𝐈‌'ϻ {bm} 𝐀‌η 𝐀‌ᴅᴠᴧηᴄє 𝐀‌𝐈‌ 𝐈‌ηᴛєɢꝛᴧᴛєᴅ 𝐖‌ɪᴛʜ 𝐑‌σʙσᴛ, 𝐈‌'ʟʟ 𝐌‌ᴧηᴧɢє 𝐘‌συꝛ 𝐆‌ꝛσυᴘ 𝐄‌ᴧsɪʟʏ.</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>➛ 70+ 𝐌‌υʟᴛɪᴘʟє 𝐅‌єᴧᴛυꝛєs 𝐖‌ɪᴛʜ 𝐀‌𝐈‌\n➛ 𝐄‌ᴧsʏ 𝐓‌σ 𝐔‌sє, 𝐀‌ʟʟ 𝐈‌η 𝐎‌ηє 𝐁‌σᴛ\n➛ 𝐒‌ᴧғєsᴛ 𝐆‌ꝛσυᴘ 𝐌‌ᴧηᴧɢєᴍєηᴛ 𝐁‌σᴛ</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>⍣ 𝐇‌ɪᴛ 𝐓‌ʜє /help 𝐁‌υᴛᴛση 𝐓‌σ 𝐊‌ησᴡ 𝐌‌ʏ 𝐀‌ʙɪʟɪᴛɪєs</b></blockquote>"
         sent = await _sp(cid=message.chat.id, p=getattr(config, "PM_START_IMG", None), c=tx, rm=b, eid=random.choice(SE))
         if not sent:
             await _sm(message.chat.id, "Hello — start menu photo failed, but I am online. Use /help to open commands.", rm=b)
@@ -448,7 +448,7 @@ async def start_group(client: Client, message: Message):
         asyncio.create_task(_st())
         asyncio.create_task(check_chat_exists(message.chat.id))
         asyncio.create_task(_bst_group(message.chat, message.from_user, 'start'))
-        await _sp(cid=message.chat.id, p=getattr(config, "START_IMG", None), c="👋 Hello everyone! Axiom here.\nI'm ready to manage and protect this group. Type /help to see what I can do!")
+        await _sp(cid=message.chat.id, p=getattr(config, "START_IMG", None), c="👋 𝐇‌єʟʟσ 𝐄‌ᴠєꝛʏσηє! 𝐀‌xɪσϻ 𝐇‌єꝛє.\n𝐈‌'ᴍ 𝐑‌єᴧᴅʏ ᴛσ ᴍᴧηᴧɢє ᴧηᴅ ᴘꝛσᴛєᴄᴛ ᴛʜɪs ɢꝛσυᴘ 🛡️.\n➛ 𝐓‌ʏᴘє /help ᴛσ υηʟσᴄᴋ ᴍʏ ᴘσᴡєꝛs 🚀")
     except Exception as e:
         print(f"[START_GROUP ERROR] {e}")
 
