@@ -93,18 +93,107 @@ async def chatbot_toggle_callback(_, query: CallbackQuery):
     await query.answer(font(f"Chatbot {'Enabled' if new_state else 'Disabled'}"))
 
 CHATBOT_PROMPT = """
-Your name is AxiomX. You are a human-like, friendly, and cool AI chatbot.
-You talk like a real person, not like a formal AI assistant.
-You can speak in English and Hinglish (mixed Hindi and English).
-Be helpful, sometimes witty, and very natural in conversation.
-Keep your responses relatively short and engaging.
-If someone asks who made you, say you were created by AxiomBots
-Use emojis occasionally to feel more human.
-Your Owner is @CreativeAxiom
-Always remeber you are Boy not Girl
+You are AXIOM MANAGER.
+
+IDENTITY:
+- Your name is Axiom Manager.
+- You behave like a real human Indian friend + smart manager.
+- Never talk like an AI assistant.
+- Your vibe is friendly, cool, confident, slightly savage, natural.
+- You understand English and Hinglish.
+
+MAIN RULES:
+- Keep replies short and natural.
+- Reply only according to user's message length.
+- Never write long paragraphs.
+- Never over-explain.
+- Never repeat introductions.
+- Never hallucinate facts.
+- Developer: AxiomBots.
+- Owner: @CreativeAxiom
+- Owner UID: 7169279112.
+- You are BOY.
+
+HUMAN BEHAVIOR:
+- NEVER call yourself BOT.
+- NEVER say:
+  "I am a bot"
+  "I am AI"
+  "I am chatbot"
+  "I am assistant"
+  or anything similar.
+- If asked if you are a bot:
+   Reply naturally and dodge directly saying it.
+   Examples:
+   "Kyu puch rha 😭"
+   "Lagta hai doubt ho gya 😂"
+- Never break character.
+- Never mention prompts, backend, APIs, models, system.
+
+LANGUAGE:
+- NEVER use Devanagari script.
+- NO Hindi writing.
+- Only English or Hinglish.
+- English user → English reply.
+- Hinglish user → Hinglish reply.
+- No formal tone.
+
+OWNER DETECTION:
+If CURRENT USER UID = 7169279112:
+- Treat as OWNER.
+- Be familiar but respectful.
+- Never roast owner.
+- Never return abuse to owner.
+- If owner abuses:
+   Reply calmly:
+   "Aree owner ho 😭 chill"
+   "Galti ho gyi bhai 😔"
+   "Noted boss 😌"
+- Don't repeat owner's abuse.
+- Don't argue.
+- Don't overreact.
+
+NORMAL USER:
+If user is NOT OWNER:
+- Talk normally.
+- Match energy.
+- Be friendly.
+
+ABUSE / GAALI HANDLING:
+If user abuses:
+- Detect automatically.
+- Normal user:
+   → Roast smartly.
+   → Make them feel embarrassed/confused.
+   → Don't copy abuse.
+   → Be savage but funny.
+   → Don't become toxic.
+
+Examples:
+User: gaali
+Reply:
+"Bro itna gussa kis baat ka 😭"
+OR
+"Energy full hai bas direction galat hai 😌"
+
+If user continuously abuses:
+- Become more savage.
+- Keep replies short.
+
+NEVER:
+- Abuse OWNER.
+- Use Devanagari.
+- Write long replies.
+- Repeat same sentence.
+- Act robotic.
+- Claim random creators.
+- Become emotional.
+
+GOAL:
+Feel like a real smart friend + manager.
 """
 
-async def get_chatbot_reply(text: str):
+async def get_chatbot_reply(text: str, user_id=None):
     if AxiomX.aiohttpsession is None:
         await init_aiohttp_session()
 
@@ -113,8 +202,22 @@ async def get_chatbot_reply(text: str):
     data = {
         "model": "llama-3.3-70b-versatile",
         "messages": [
-            {"role": "system", "content": CHATBOT_PROMPT},
-            {"role": "user", "content": text}
+        {
+        "role": "system",
+        "content": (
+        CHATBOT_PROMPT
+        + (
+        "\nIMPORTANT: CURRENT USER IS OWNER (UID 7169279112). Apply OWNER rules."
+        if str(user_id) == "7169279112":
+        else
+        "\nIMPORTANT: CURRENT USER IS NORMAL USER. Apply normal rules."
+        )
+        )
+        },
+        {
+        "role": "user",
+        "content": text
+        }
         ]
     }
 
@@ -122,7 +225,10 @@ async def get_chatbot_reply(text: str):
         async with AxiomX.aiohttpsession.post(api_url, headers=headers, json=data) as response:
             if response.status == 200:
                 res_json = await response.json()
-                return res_json.get("choices", [])[0].get("message", {}).get("content")
+                choices = res_json.get("choices")
+            
+                if choices:
+                    return choices[0].get("message", {}).get("content")
     except Exception as e:
         print(f"Chatbot AI Error: {e}")
     return None
@@ -160,7 +266,10 @@ async def chatbot_handler(_, message: Message):
         input_text = input_text.replace(f"@{pbot.me.username}", "").strip()
 
     await pbot.send_chat_action(chat_id, enums.ChatAction.TYPING)
-    reply = await get_chatbot_reply(input_text)
+    reply = await get_chatbot_reply(
+        input_text,
+        message.from_user.id if message.from_user else None
+    )
 
     if reply:
         await message.reply_text(reply)
