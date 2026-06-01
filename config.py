@@ -64,6 +64,14 @@ SUDO_USERS = [int(x) for x in getenv("SUDO_USERS", "7169279112").split() if x.st
 SUPPORT_USERS = [int(x) for x in getenv("SUPPORT_USERS", "7169279112").split() if x.strip().lstrip("-").isdigit()]
 WHITELIST_USERS = [int(x) for x in getenv("WHITELIST_USERS", "7169279112").split() if x.strip().lstrip("-").isdigit()]
 OWNER_ID = int(getenv("OWNER_ID", "8871937776"))
+
+def _safe_int(value, fallback=0):
+    try:
+        return int(str(value).strip())
+    except (TypeError, ValueError):
+        return fallback
+
+AXIOM_UID = _safe_int(getenv("AXIOM_UID"), AXIOM_OWNER_ID or OWNER_ID)
 AXIOM_UID = int(getenv("AXIOM_UID", str(AXIOM_OWNER_ID or OWNER_ID)))
 DEV_LIST = [int(x) for x in getenv("DEV_LIST", "7169279112").split() if x.strip().lstrip("-").isdigit()]
 
