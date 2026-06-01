@@ -86,7 +86,8 @@ def _gsb(uid):
     su = SUPPORT_CHAT if SUPPORT_CHAT.startswith("http") else f"https://t.me/{SUPPORT_CHAT.lstrip('@')}"
     uu = UPDATE_CHANNEL if UPDATE_CHANNEL.startswith("http") else f"https://t.me/{UPDATE_CHANNEL.lstrip('@')}"
     au = f"https://t.me/{BOT_UN}?startgroup=true&admin=manage_chat+change_info+post_messages+edit_messages+delete_messages+invite_user"
-    return InlineKeyboardMarkup([[InlineKeyboardButton(font('＋ 𝐈‌ηᴛєɢꝛᴧᴛє 𝐈‌η 𝐘‌συꝛ 𝐂‌ʜᴧᴛ  ＋'), url=f'https://t.me/{bot_username}?startgroup=true', style=ButtonStyle.SUCCESS)], [InlineKeyboardButton(font('🎧 𝐌‌υsɪᴄ'), url='https://t.me/vcXmnvbot?start=help', style=ButtonStyle.PRIMARY), InlineKeyboardButton(font('⚙ 𝐇‌єʟᴘ ⚙'), callback_data=f'help_{uid}', style=ButtonStyle.DANGER)], [InlineKeyboardButton(font('𝐔‌ᴘᴅᴧᴛєs ⎘'), url=uu, style=ButtonStyle.PRIMARY), InlineKeyboardButton(font('𝐒‌υᴘᴘσꝛᴛ ☏︎'), url=support_url, style=ButtonStyle.PRIMARY)], [InlineKeyboardButton(font('σᴡηєꝛ ✧ ᴀxɪσϻ'), user_id=config.AXIOM_UID, style=ButtonStyle.SUCCESS)]])
+    owner_id = getattr(config, "AXIOM_UID", getattr(config, "AXIOM_OWNER_ID", getattr(config, "OWNER_ID", 0)))
+    return InlineKeyboardMarkup([[InlineKeyboardButton(font('＋ 𝐈‌ηᴛєɢꝛᴧᴛє 𝐈‌η 𝐘‌συꝛ 𝐂‌ʜᴧᴛ  ＋'), url=au, style=ButtonStyle.SUCCESS)], [InlineKeyboardButton(font('🎧 𝐌‌υsɪᴄ'), url='https://t.me/vcXmnvbot?start=help', style=ButtonStyle.PRIMARY), InlineKeyboardButton(font('⚙ 𝐇‌єʟᴘ ⚙'), callback_data=f'help_{uid}', style=ButtonStyle.DANGER)], [InlineKeyboardButton(font('𝐔‌ᴘᴅᴧᴛєs ⎘'), url=uu, style=ButtonStyle.PRIMARY), InlineKeyboardButton(font('𝐒‌υᴘᴘσꝛᴛ ☏︎'), url=su, style=ButtonStyle.PRIMARY)], [InlineKeyboardButton(font('σᴡηєꝛ ✧ ᴀxɪσϻ'), user_id=owner_id, style=ButtonStyle.SUCCESS)]])
 
 async def _sp(cid, p, c=None, rm=None, eid=None, rt=None):
     try:
