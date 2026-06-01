@@ -394,7 +394,7 @@ async def _handle_start_private(message: Message):
         bi = _gbi()
         bm = f"[{bi.first_name}](tg://user?id={bi.id})" if bi else "I"
         b = _gsb(uid)
-        tx = f"<blockquote><b>⍣ 𝖧𝖾𝗒𝖺 {u.mention} {bm} 𝖨'𝗆 𝖠𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾 𝖠𝖨 𝖨𝗇𝗍𝖾𝗀𝗋𝖺𝗍𝖾𝖽 𝖱𝗈𝖻𝗈𝗍, 𝖨'𝗅𝗅 𝖬𝖺𝗇𝖺𝗀𝖾 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 𝖤𝖺𝗌𝗂𝗅𝗒.</b></blockquote>\n──────────────────────\n<blockquote><b>➛ 70+ 𝖬𝗎𝗅𝗍𝗂𝗉𝗅𝖾 𝖥𝖾𝖺𝗍𝗎𝗋𝖾𝗌 𝖶𝗂𝗍𝗁 𝖠𝗂\n➛ E𝖺𝗌𝗒 𝖳𝗈 𝖴𝗌𝖾, 𝖠𝗅𝗅 𝖨𝗇 𝖮𝗇𝖾 𝖡𝗈𝗍\n➛ 𝖲𝖺𝖿𝖾𝗌𝗍 𝖦𝗋𝗈𝗎𝗉 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖡𝗈𝗍</b></blockquote>\n──────────────────────\n<blockquote><b>⍣ 𝖧𝗂𝗍 𝖳𝗁𝖾 /help 𝖡𝗎𝗍𝗍𝗈𝗇 𝖳𝗈 𝖪𝗇𝗈𝗐 𝖬𝗒 𝖠𝖻𝗂𝗅𝗂𝗍𝗂𝖾𝗌</b></blockquote>"
+        tx = f"<blockquote><b>⍣ 𝖧𝖾𝗒𝖺 {u.mention} {bm} 𝖨'𝗆 𝖠𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾 𝖠𝖨 𝖨𝗇𝗍𝖾𝗀𝗋𝖺𝗍𝖾𝖽 𝖱𝗈𝖻𝗈𝗍, 𝖨'𝗅𝗅 𝖬𝖺𝗇𝖺𝗀𝖾 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 𝖤𝖺𝗌𝗂𝗅𝗒.</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>➛ 70+ 𝖬𝗎𝗅𝗍𝗂𝗉𝗅𝖾 𝖥𝖾𝖺𝗍𝗎𝗋𝖾𝗌 𝖶𝗂𝗍𝗁 𝖠𝗂\n➛ E𝖺𝗌𝗒 𝖳𝗈 𝖴𝗌𝖾, 𝖠𝗅𝗅 𝖨𝗇 𝖮𝗇𝖾 𝖡𝗈𝗍\n➛ 𝖲𝖺𝖿𝖾𝗌𝗍 𝖦𝗋𝗈𝗎𝗉 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖡𝗈𝗍</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>⍣ 𝖧𝗂𝗍 𝖳𝗁𝖾 /help 𝖡𝗎𝗍𝗍𝗈𝗇 𝖳𝗈 𝖪𝗇𝗈𝗐 𝖬𝗒 𝖠𝖻𝗂𝗅𝗂𝗍𝗂𝖾𝗌</b></blockquote>"
         await _sp(cid=message.chat.id, p=getattr(config, "PM_START_IMG", None), c=tx, rm=b, eid=random.choice(SE))
     except Exception as e:
         print(f"[HANDLE_START_PRIVATE ERROR] {e}")
@@ -418,7 +418,7 @@ async def start_group(client: Client, message: Message):
         asyncio.create_task(_st())
         asyncio.create_task(check_chat_exists(message.chat.id))
         asyncio.create_task(_bst_group(message.chat, message.from_user, 'start'))
-        await _sp(cid=message.chat.id, p=getattr(config, "START_IMG", None), c="👋 Hello everyone! Rosie here.\nI'm ready to manage and protect this group. Type /help to see what I can do!")
+        await _sp(cid=message.chat.id, p=getattr(config, "START_IMG", None), c="👋 Hello everyone! Axiom here.\nI'm ready to manage and protect this group. Type /help to see what I can do!")
     except Exception as e:
         print(f"[START_GROUP ERROR] {e}")
 
@@ -457,7 +457,7 @@ async def help_private(client: Client, message: Message):
         if not b:
             await _sm(message.chat.id, "Help buttons not available.")
             return
-        ht = f"━━━━━━━━━━━━━━━━━━━\n<blockquote><b>{font('Hii')} {u.mention}!\n\n{font('Need help or want to support us?')}\n\n{font('Main available commands:')}\n- /support : {font('Connect with our support.')}\n- /alive : {font('Check uptime')}\n- /donate : {font('For information about donations!')}\n- /privacy : {font('Learn how we protect your privacy.')}\n- {font('In a group: Get your group settings.')}</b></blockquote>\n━━━━━━━━━━━━━━━━━━━"
+        ht = f"•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>{font('Hii')} {u.mention}!\n\n{font('Need help or want to support us?')}\n\n{font('Main available commands:')}\n- /support : {font('Connect with our support.')}\n- /alive : {font('Check uptime')}\n- /donate : {font('For information about donations!')}\n- /privacy : {font('Learn how we protect your privacy.')}\n- {font('In a group: Get your group settings.')}</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•"
         await _sp(cid=message.chat.id, p=getattr(config, "HELP_CMD_IMG", None), c=ht, rm=b, eid=random.choice(SE))
     except Exception as e:
         print(f"[HELP_PRIVATE ERROR] {e}")
