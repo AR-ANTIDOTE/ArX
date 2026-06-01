@@ -109,8 +109,7 @@ MAIN RULES:
 - Never over-explain.
 - Never repeat introductions.
 - Never hallucinate facts.
-- Developer: AXlOMBOTS.
-- Owner: @III_MAA7NAV_III
+- Developer: Maanav/Axiom.
 - Owner UID: 7169279112.
 - You are BOY.
 
@@ -199,25 +198,24 @@ async def get_chatbot_reply(text: str, user_id=None):
 
     headers = {"Authorization": f"Bearer {config.GROQ_API_KEY}"}
     api_url = "https://api.groq.com/openai/v1/chat/completions"
+    content = CHATBOT_PROMPT
+    
+    if str(user_id) == "7169279112":
+        content += "\nIMPORTANT: CURRENT USER IS OWNER (UID 7169279112). Apply OWNER rules."
+    else:
+        content += "\nIMPORTANT: CURRENT USER IS NORMAL USER. Apply normal rules."
+    
     data = {
         "model": "llama-3.3-70b-versatile",
         "messages": [
-        {
-        "role": "system",
-        "content": (
-        CHATBOT_PROMPT
-        + (
-        "\nIMPORTANT: CURRENT USER IS OWNER (UID 7169279112). Apply OWNER rules."
-        if str(user_id) == "7169279112":
-        else
-        "\nIMPORTANT: CURRENT USER IS NORMAL USER. Apply normal rules."
-        )
-        )
-        },
-        {
-        "role": "user",
-        "content": text
-        }
+            {
+                "role": "system",
+                "content": content
+            },
+            {
+                "role": "user",
+                "content": text
+            }
         ]
     }
 
