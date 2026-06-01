@@ -56,14 +56,14 @@ else:
     LOGS_CHANNEL = None
 
 LOGGER_ID = int(getenv('LOGGER_ID', '0'))
-BOT_USERNAME = getenv('BOT_USERNAME', '@axiommanagebot')
-BOT_NAME = getenv('BOT_NAME', 'Eiko')
+BOT_USERNAME = getenv('BOT_USERNAME', '@AxiomGcBot')
+BOT_NAME = getenv('BOT_NAME', 'Axiom Manager')
 IS_WEB_SUP = getenv('IS_WEB_SUP', 'True').lower() == 'true'
 
 SUDO_USERS = [int(x) for x in getenv("SUDO_USERS", "7169279112").split() if x.strip().lstrip("-").isdigit()]
 SUPPORT_USERS = [int(x) for x in getenv("SUPPORT_USERS", "7169279112").split() if x.strip().lstrip("-").isdigit()]
 WHITELIST_USERS = [int(x) for x in getenv("WHITELIST_USERS", "7169279112").split() if x.strip().lstrip("-").isdigit()]
-OWNER_ID = int(getenv("OWNER_ID", "8871937776"))
+OWNER_ID = int(getenv("OWNER_ID", "7169279112"))
 
 def _safe_int(value, fallback=0):
     try:
