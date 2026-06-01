@@ -86,9 +86,10 @@ def _gbi(): return _bi
 def _gsb(uid):
     su = SUPPORT_CHAT if SUPPORT_CHAT.startswith("http") else f"https://t.me/{SUPPORT_CHAT.lstrip('@')}"
     uu = UPDATE_CHANNEL if UPDATE_CHANNEL.startswith("http") else f"https://t.me/{UPDATE_CHANNEL.lstrip('@')}"
-    au = f"https://t.me/{BOT_UN}?startgroup=true&admin=manage_chat+change_info+post_messages+edit_messages+delete_messages+invite_user"
-    owner_id = getattr(config, "AXIOM_UID", getattr(config, "AXIOM_OWNER_ID", getattr(config, "OWNER_ID", 0)))
-    owner_button = InlineKeyboardButton(font('σᴡηєꝛ ✧ ᴀxɪσϻ'), user_id=owner_id, style=ButtonStyle.SUCCESS) if owner_id else InlineKeyboardButton(font('σᴡηєꝛ ✧ ᴀxɪσϻ'), url=su, style=ButtonStyle.SUCCESS)
+    au = f"https://t.me/{BOT_UN}?startgroup=true"
+    owner_id = getattr(config, "OWNER_ID", 0) or getattr(config, "AXIOM_OWNER_ID", 0)
+    owner_url = f"tg://user?id={owner_id}" if owner_id else su
+    owner_button = InlineKeyboardButton(font('σᴡηєꝛ ✧ ᴀxɪσϻ'), url=owner_url, style=ButtonStyle.SUCCESS)
     return InlineKeyboardMarkup([[InlineKeyboardButton(font('＋ 𝐈‌ηᴛєɢꝛᴧᴛє 𝐈‌η 𝐘‌συꝛ 𝐂‌ʜᴧᴛ  ＋'), url=au, style=ButtonStyle.SUCCESS)], [InlineKeyboardButton(font('🎧 𝐌‌υsɪᴄ'), url='https://t.me/vcXmnvbot?start=help', style=ButtonStyle.PRIMARY), InlineKeyboardButton(font('⚙ 𝐇‌єʟᴘ ⚙'), callback_data=f'help_{uid}', style=ButtonStyle.DANGER)], [InlineKeyboardButton(font('𝐔‌ᴘᴅᴧᴛєs ⎘'), url=uu, style=ButtonStyle.PRIMARY), InlineKeyboardButton(font('𝐒‌υᴘᴘσꝛᴛ ☏︎'), url=su, style=ButtonStyle.PRIMARY)], [owner_button]])
 
 async def _sp(cid, p, c=None, rm=None, eid=None, rt=None, has_spoiler=None):
@@ -97,12 +98,13 @@ async def _sp(cid, p, c=None, rm=None, eid=None, rt=None, has_spoiler=None):
         if isinstance(c, (list, tuple)): c = c[0] if c else None
         if not p or not isinstance(p, str):
             if c:
-                try: return await pbot.send_message(chat_id=cid, text=c, reply_markup=rm, reply_to_message_id=rt, effect_id=eid)
-                except Exception as e: 
-                    print(f"[SP MSG ERROR] {e}")
-                    return await pbot.send_message(chat_id=cid, text=c)
+                try:
+                    return await pbot.send_message(chat_id=cid, text=c, reply_markup=rm, reply_to_message_id=rt, effect_id=eid, parse_mode=enums.ParseMode.HTML)
+                except Exception as e:
+                    print(f"[SP MSG ERROR] {type(e).__name__}: {e}")
+                    return await pbot.send_message(chat_id=cid, text=c, reply_markup=rm, reply_to_message_id=rt, parse_mode=enums.ParseMode.HTML)
             return None
-        kw = {'chat_id': cid, 'photo': p, 'caption': c, 'reply_markup': rm}
+        kw = {'chat_id': cid, 'photo': p, 'caption': c, 'reply_markup': rm, 'parse_mode': enums.ParseMode.HTML}
         if rt: kw['reply_to_message_id'] = rt
         if has_spoiler is not None: kw['has_spoiler'] = has_spoiler
         try:
@@ -113,7 +115,23 @@ async def _sp(cid, p, c=None, rm=None, eid=None, rt=None, has_spoiler=None):
                 kw.pop('message_effect_id', None)
                 kw['effect_id'] = eid
                 return await pbot.send_photo(**kw)
-            except: raise
+            except Exception as retry_error:
+                kw.pop('effect_id', None)
+                try:
+                    return await pbot.send_photo(**kw)
+                except Exception as plain_photo_error:
+                    print(f"[SP PHOTO TYPE RETRY ERROR] {type(retry_error).__name__}: {retry_error}; {type(plain_photo_error).__name__}: {plain_photo_error}")
+                    return await pbot.send_message(chat_id=cid, text=c or "❌ Photo failed to send.", reply_markup=rm, parse_mode=enums.ParseMode.HTML)
+        except (BadRequest, RPCError) as e:
+            if eid:
+                try:
+                    kw.pop('message_effect_id', None)
+                    kw.pop('effect_id', None)
+                    return await pbot.send_photo(**kw)
+                except Exception as retry_error:
+                    print(f"[SP PHOTO RETRY ERROR] {type(retry_error).__name__}: {retry_error}")
+            print(f"[SP PHOTO ERROR] {type(e).__name__}: {e}")
+            return await pbot.send_message(chat_id=cid, text=c or "❌ Photo failed to send.", reply_markup=rm, parse_mode=enums.ParseMode.HTML)
     except FloodWait as e:
         print(f"[SP FLOODWAIT] {e}")
         await asyncio.sleep(min(10, getattr(e, "value", 1)))
@@ -121,7 +139,7 @@ async def _sp(cid, p, c=None, rm=None, eid=None, rt=None, has_spoiler=None):
     except Exception as e:
         print(f"[SP ERROR] {type(e).__name__}: {e}")
         try:
-            return await pbot.send_message(chat_id=cid, text=c or "❌ Photo failed to send.", reply_markup=rm)
+            return await pbot.send_message(chat_id=cid, text=c or "❌ Photo failed to send.", reply_markup=rm, parse_mode=enums.ParseMode.HTML)
         except Exception as e2:
             print(f"[SP FALLBACK ERROR] {type(e2).__name__}: {e2}")
             try:
@@ -401,9 +419,10 @@ async def _handle_start_private(message: Message):
                 asyncio.create_task(activate_user(uid))
         
         bi = _gbi()
-        bm = f'<a href="tg://user?id={bi.id}">{html.escape(bi.first_name)}</a>' if bi else "I"
+        bm = f'<a href="tg://user?id={bi.id}">{html.escape(bi.first_name or BOT_UN)}</a>' if bi else "I"
+        um = f'<a href="tg://user?id={u.id}">{html.escape(u.first_name or "there")}</a>'
         b = _gsb(uid)
-        tx = f"<blockquote><b>⍣ 𝖧𝖾𝗒𝖺 {u.mention} {bm} 𝖨'𝗆 𝖠𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾 𝖠𝖨 𝖨𝗇𝗍𝖾𝗀𝗋𝖺𝗍𝖾𝖽 𝖱𝗈𝖻𝗈𝗍, 𝖨'𝗅𝗅 𝖬𝖺𝗇𝖺𝗀𝖾 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 𝖤𝖺𝗌𝗂𝗅𝗒.</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>➛ 70+ 𝖬𝗎𝗅𝗍𝗂𝗉𝗅𝖾 𝖥𝖾𝖺𝗍𝗎𝗋𝖾𝗌 𝖶𝗂𝗍𝗁 𝖠𝗂\n➛ E𝖺𝗌𝗒 𝖳𝗈 𝖴𝗌𝖾, 𝖠𝗅𝗅 𝖨𝗇 𝖮𝗇𝖾 𝖡𝗈𝗍\n➛ 𝖲𝖺𝖿𝖾𝗌𝗍 𝖦𝗋𝗈𝗎𝗉 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖡𝗈𝗍</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>⍣ 𝖧𝗂𝗍 𝖳𝗁𝖾 /help 𝖡𝗎𝗍𝗍𝗈𝗇 𝖳𝗈 𝖪𝗇𝗈𝗐 𝖬𝗒 𝖠𝖻𝗂𝗅𝗂𝗍𝗂𝖾𝗌</b></blockquote>"
+        tx = f"<blockquote><b>⍣ 𝖧𝖾𝗒𝖺 {um} {bm} 𝖨'𝗆 𝖠𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾 𝖠𝖨 𝖨𝗇𝗍𝖾𝗀𝗋𝖺𝗍𝖾𝖽 𝖱𝗈𝖻𝗈𝗍, 𝖨'𝗅𝗅 𝖬𝖺𝗇𝖺𝗀𝖾 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 𝖤𝖺𝗌𝗂𝗅𝗒.</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>➛ 70+ 𝖬𝗎𝗅𝗍𝗂𝗉𝗅𝖾 𝖥𝖾𝖺𝗍𝗎𝗋𝖾𝗌 𝖶𝗂𝗍𝗁 𝖠𝗂\n➛ E𝖺𝗌𝗒 𝖳𝗈 𝖴𝗌𝖾, 𝖠𝗅𝗅 𝖨𝗇 𝖮𝗇𝖾 𝖡𝗈𝗍\n➛ 𝖲𝖺𝖿𝖾𝗌𝗍 𝖦𝗋𝗈𝗎𝗉 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖡𝗈𝗍</b></blockquote>\n•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n<blockquote><b>⍣ 𝖧𝗂𝗍 𝖳𝗁𝖾 /help 𝖡𝗎𝗍𝗍𝗈𝗇 𝖳𝗈 𝖪𝗇𝗈𝗐 𝖬𝗒 𝖠𝖻𝗂𝗅𝗂𝗍𝗂𝖾𝗌</b></blockquote>"
         sent = await _sp(cid=message.chat.id, p=getattr(config, "PM_START_IMG", None), c=tx, rm=b, eid=random.choice(SE))
         if not sent:
             await _sm(message.chat.id, "Hello — start menu photo failed, but I am online. Use /help to open commands.", rm=b)
