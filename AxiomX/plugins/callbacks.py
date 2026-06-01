@@ -315,21 +315,22 @@ async def back_to_start_callback(client, query):
     update_url = UPDATE_CHANNEL if UPDATE_CHANNEL.startswith("http") else f'https://t.me/{UPDATE_CHANNEL.lstrip("@")}'
     
     buttons = [
-        [ptypes.InlineKeyboardButton(font('🎧 Music'), callback_data="settings_back_helper", style=ButtonStyle.SUCCESS),
-         ptypes.InlineKeyboardButton(font('⚙ Help ⚙'), callback_data=f'help_{user_id}', style=ButtonStyle.PRIMARY),
-         ptypes.InlineKeyboardButton(font('Update 💬'), url=update_url, style=ButtonStyle.SUCCESS)],
-        [ptypes.InlineKeyboardButton(font("📝 Switch Too Inline 📝"), switch_inline_query_current_chat="", style=ButtonStyle.DANGER)],
-        [ptypes.InlineKeyboardButton(font('➕ Add Me Else Your Group ➕'), url=f'https://t.me/{bot_username}?startgroup=true', style=ButtonStyle.SUCCESS)]
-      #  [ptypes.InlineKeyboardButton(font('𓊈💥🔥𝔻eͥѵeͣlͫ𐍉קeℝ🔥💥𓊉'), user_id=config.AXIOM_UID, style=ButtonStyle.DANGER)]
+        [ptypes.InlineKeyboardButton(font('➕ Add Me Else Your Group ➕'), url=f'https://t.me/{bot_username}?startgroup=true', style=ButtonStyle.SUCCESS)],
+        [ptypes.InlineKeyboardButton(font('🎧 Music'), url=f'https://t.me/vcXmnvbot?start=help', style=ButtonStyle.PRIMARY),
+         ptypes.InlineKeyboardButton(font('⚙ Help ⚙'), callback_data=f'help_{user_id}', style=ButtonStyle.DANGER)],
+         [ptypes.InlineKeyboardButton(font('Update 💬'), url=update_url, style=ButtonStyle.PRIMARY),
+         ptypes.InlineKeyboardButton(font('Support 💬'), url=support_url, style=ButtonStyle.PRIMARY)],
+        [ptypes.InlineKeyboardButton(font('𓊈💥🔥𝔻eͥѵeͣlͫ𐍉קeℝ🔥💥𓊉'), user_id=config.AXIOM_UID, style=ButtonStyle.SUCCESS)]
     ]
     caption = (
-        f"<blockquote><b>**⍣ 𝖧𝖾𝗒𝖺 {mention}\n\n𝖨'𝗆 {bot_mention} 𝖠𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾 𝖠𝖨 𝖨𝗇𝗍𝖾𝗀𝗋𝖺𝗍𝖾𝖽 𝖶𝗂𝗍𝗁 𝖱𝗈𝖻𝗈𝗍, 𝖨'𝗅𝗅 𝖬𝖺𝗇𝖺𝗀𝖾 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 𝖤𝖺𝗌𝗂𝗅𝗒.**</b></blockquote>\n"
-        f"──────────────────────\n"
-        f"<blockquote><b>**➛ 70+ 𝖬𝗎𝗅𝗍𝗂𝗉𝗅𝖾 𝖥𝖾𝖺𝗍𝗎ʀ𝖾𝗌 𝖶𝗂𝗍𝗁 𝖠𝗂**\n"
-        f"**➛ E𝖺𝗌𝗒 𝖳𝗈 𝖴𝗌𝖾, 𝖠𝗅𝗅 𝖨𝗇 𝖮𝗇𝖾 𝖡𝗈𝗍**\n"
-        f"**➛ 𝖲𝖺𝖿𝖾𝗌𝗍 𝖦𝗋𝗈𝗎𝗉 𝖬𝖺𝗇𝖺𝗀𝖾𝗆𝖾𝗇𝗍 𝖡𝗈𝗍**</b></blockquote>\n"
-        f"──────────────────────\n"
-        f"<blockquote><b>**⍣ 𝖧𝗂𝗍 𝖳𝗁𝖾 /help 𝖡𝗎𝗍𝗍𝗈𝗇 𝖳𝗈 𝖪𝗇𝗈𝗐 𝖬𝗒 𝖠𝖻𝗂𝗅𝗂𝗍𝗂𝖾𝗌</b></blockquote>**"
+        f"<blockquote><b>**⍣ 𝐇‌єʏᴧ {mention}\n"
+        f"𝐈‌'ϻ {bot_mention} 𝐀‌η 𝐀‌ᴅᴠᴧηᴄє 𝐀‌𝐈‌ 𝐈‌ηᴛєɢꝛᴧᴛєᴅ 𝐖‌ɪᴛʜ 𝐑‌σʙσᴛ, 𝐈‌'ʟʟ 𝐌‌ᴧηᴧɢє 𝐘‌συꝛ 𝐆‌ꝛσυᴘ 𝐄‌ᴧsɪʟʏ..**</b></blockquote>\n"
+        f"•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n"
+        f"<blockquote expandable><b>**➛ 70+ 𝐌‌υʟᴛɪᴘʟє 𝐅‌єᴧᴛυꝛєs 𝐖‌ɪᴛʜ 𝐀‌𝐈‌ **\n"
+        f"**➛ 𝐄‌ᴧsʏ 𝐓‌σ 𝐔‌sє, 𝐀‌ʟʟ 𝐈‌η 𝐎‌ηє 𝐁‌σᴛ**\n"
+        f"**➛ 𝐒‌ᴧғєsᴛ 𝐆‌ꝛσυᴘ 𝐌‌ᴧηᴧɢєᴍєηᴛ 𝐁‌σᴛ**</b></blockquote>\n"
+        f"•─ ⋅ ⋅ ⋅ ─────── ⋅ • ⋅ ─────── ⋅ ⋅ ⋅ ─•\n"
+        f"<blockquote><b>**⍣ 𝐇‌ɪᴛ 𝐓‌ʜє /help 𝐁‌υᴛᴛση 𝐓‌σ 𝐊‌ησᴡ 𝐌‌ʏ 𝐀‌ʙɪʟɪᴛɪєs</b></blockquote>**"
     )
     
     try:
@@ -339,4 +340,4 @@ async def back_to_start_callback(client, query):
 
     import random
     from AxiomX.plugins.base import _sp
-    await _sp(cid=query.message.chat.id, p=config.PM_START_IMG, c=caption, rm=ptypes.InlineKeyboardMarkup(buttons), eid=random.choice(SE))
+    await _sp(cid=query.message.chat.id, p=config.PM_START_IMG, has_spoiler=True,c=caption, rm=ptypes.InlineKeyboardMarkup(buttons), eid=random.choice(SE))
